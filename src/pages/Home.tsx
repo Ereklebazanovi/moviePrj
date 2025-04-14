@@ -5,7 +5,7 @@ import {
   searchMovies,
   getMoviesByGenre,
 } from "../services/api";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import GenreFilter from "./GenreFilter";
 import MovieCard from "../components/MovieCard";
 import { FiSearch, FiFilm, FiAlertCircle } from "react-icons/fi";
@@ -29,7 +29,7 @@ const Home = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [selectedGenreId, setSelectedGenreId] = useState<string | null>(null);
-  const { genreName } = useParams();
+  // const { genreName } = useParams();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);

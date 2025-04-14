@@ -125,18 +125,19 @@ const OpenModal = ({ movieImage, movieName }: OpenModalProps) => {
         </div>
       </Modal>
 
-      <style jsx global>{`
-        .poster-modal .ant-modal-content {
-          background: transparent;
-          box-shadow: none;
-          padding: 0;
-        }
+      <style>{`
+  .poster-modal .ant-modal-content {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
 
-        .poster-modal .ant-modal-close {
-          top: 16px;
-          right: 16px;
-        }
-      `}</style>
+  .poster-modal .ant-modal-close {
+    top: 16px;
+    right: 16px;
+  }
+`}
+</style>
     </div>
   );
 };

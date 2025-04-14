@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { searchMovies } from "../services/api";
+import { searchMovies,Movie } from "../services/api";
 import MovieCard from "../components/MovieCard";
 import { FiSearch, FiFilm } from "react-icons/fi";
-
 const SearchResults = () => {
   const location = useLocation();
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [results, setResults] = useState<Movie[]>([]);  const [loading, setLoading] = useState(false);
 
   const searchQuery = new URLSearchParams(location.search).get("q");
 

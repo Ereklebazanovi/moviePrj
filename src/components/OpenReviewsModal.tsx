@@ -1,4 +1,3 @@
-"use client";
 
 import { useState, useEffect } from "react";
 import { Modal, Button } from "antd";
@@ -122,7 +121,7 @@ const OpenReviewsModal = ({ movieId }: OpenReviewsModalProps) => {
             </div>
           ) : Array.isArray(reviews) && reviews.length > 0 ? (
             <div className="space-y-6 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
-              {reviews.map((review, index) => (
+              {reviews.map((review) => (
                 <div
                   key={review.id}
                   className="relative bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 shadow-md transition-all duration-300 hover:shadow-indigo-500/10 hover:border-gray-600/50 group"
@@ -224,7 +223,7 @@ const OpenReviewsModal = ({ movieId }: OpenReviewsModalProps) => {
         </div>
       </Modal>
 
-      <style jsx global>{`
+      <style>{`
         .reviews-modal .ant-modal-content {
           background: transparent;
           box-shadow: none;
