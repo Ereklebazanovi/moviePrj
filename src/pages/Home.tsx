@@ -54,22 +54,15 @@ const Home = () => {
     staleTime: 1000 * 60 * 5,
   });
 
-  const handleSearch = async (e: React.FormEvent) => {
+  const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!searchQuery.trim() || isSearching) return;
+    if (!searchQuery.trim()) return;
 
-    setIsSearching(true);
-    try {
-      const results = await searchMovies(searchQuery);
-      setSearchResults(results);
-    } catch (error) {
-      console.error("Failed to search movies:", error);
-      setSearchResults([]);
-    } finally {
-      setIsSearching(false);
-    }
-    setSuggestions([]);
+    // Navigate to /search?q=...
+    navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+
     setSearchQuery("");
+    setSuggestions([]);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -159,33 +152,34 @@ const Home = () => {
 
           {/* Suggestions Dropdown */}
           {suggestions.length > 0 && (
-  <ul className="absolute top-full mt-2 left-0 w-full bg-black/70 backdrop-blur-xl rounded-xl border border-white/10 max-h-96 overflow-y-auto shadow-2xl z-50">
-    {suggestions.map((movie) => (
-      <li
-        key={movie.id}
-        onClick={() => handleSuggestionClick(movie.id)}
-        className="flex items-center gap-4 p-3 cursor-pointer hover:bg-white/10 transition border-b border-white/5"
-      >
-        <img
-          src={
-            movie.poster_path
-              ? `https://image.tmdb.org/t/p/w92${movie.poster_path}`
-              : "https://via.placeholder.com/92x138?text=No+Image"
-          }
-          alt={movie.title}
-          className="w-12 h-18 rounded-md object-cover shadow-md"
-        />
-        <div className="text-white">
-          <h4 className="text-sm font-semibold">{movie.title}</h4>
-          {movie.release_date && (
-            <p className="text-xs text-white/60">{movie.release_date.slice(0, 4)}</p>
+            <ul className="absolute top-full mt-2 left-0 w-full bg-black/70 backdrop-blur-xl rounded-xl border border-white/10 max-h-96 overflow-y-auto shadow-2xl z-50">
+              {suggestions.map((movie) => (
+                <li
+                  key={movie.id}
+                  onClick={() => handleSuggestionClick(movie.id)}
+                  className="flex items-center gap-4 p-3 cursor-pointer hover:bg-white/10 transition border-b border-white/5"
+                >
+                  <img
+                    src={
+                      movie.poster_path
+                        ? `https://image.tmdb.org/t/p/w92${movie.poster_path}`
+                        : "https://via.placeholder.com/92x138?text=No+Image"
+                    }
+                    alt={movie.title}
+                    className="w-12 h-18 rounded-md object-cover shadow-md"
+                  />
+                  <div className="text-white">
+                    <h4 className="text-sm font-semibold">{movie.title}</h4>
+                    {movie.release_date && (
+                      <p className="text-xs text-white/60">
+                        {movie.release_date.slice(0, 4)}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
           )}
-        </div>
-      </li>
-    ))}
-  </ul>
-)}
-
         </form>
       </div>
 

@@ -47,8 +47,7 @@ const App = () => {
         <Route path="favorites" element={<Favorites />} />
         <Route path="genre/:genreId" element={<GenrePage />} />
         <Route path="movie/:movieId" element={<MoviePage />} />
-        <Route path="/search" element={<SearchResults />} />
-
+        <Route path="search" element={<SearchResults />} /> {/* ✅ Fixed */}
       </Route>
 
       {/* If login page should NOT have navbar, leave it outside */}
