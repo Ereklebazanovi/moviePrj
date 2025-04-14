@@ -22,7 +22,7 @@ interface Movie {
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<Movie[] | null>(null);
-  const [isSearching, setIsSearching] = useState(false);
+  const [isSearching] = useState(false);
   const [suggestions, setSuggestions] = useState<Movie[]>([]);
   const [debounceTimeout, setDebounceTimeout] = useState<number | null>(null);
 
