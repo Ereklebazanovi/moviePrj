@@ -2,17 +2,18 @@ import { Link, useNavigate } from "react-router-dom";
 import type React from "react";
 import { useState, useEffect } from "react";
 import Login from "../Login";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth"; // ⬅️ import User type
 import { auth } from "../firebase";
+
 const Navbar = () => {
   const navigate = useNavigate();
   const [showLoginOptions, setShowLoginOptions] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null); // ⬅️ Fix here
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      setUser(currentUser); // ✅ valid now
     });
 
     return () => unsubscribe();

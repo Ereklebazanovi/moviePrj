@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { getTrailersById } from "../services/api";
 
-const MovieTrailers = ({ movieId }: { movieId: string }) => {
+interface MovieTrailersProps {
+  movieId: string;
+}
+
+const MovieTrailers = ({ movieId }: MovieTrailersProps) => {
   const [trailers, setTrailers] = useState<any[]>([]);
   const [error, setError] = useState<string>("");
 

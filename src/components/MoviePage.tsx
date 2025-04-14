@@ -383,7 +383,7 @@ const MoviePage = () => {
               Close
             </button>
             <div className="relative p-4 pt-16 pb-8">
-              <MovieTrailers movieId={movie.id} />
+            <MovieTrailers movieId={movie.id.toString()} />
             </div>
           </div>
         </div>
