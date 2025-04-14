@@ -1,7 +1,6 @@
 import { useMovieContext } from "../contexts/MovieContext";
 import MovieCard from "../components/MovieCard";
 import { getAuth } from "firebase/auth";
-import { auth } from "../firebase";
 import { useState, useEffect } from "react";
 
 const Favorites = () => {

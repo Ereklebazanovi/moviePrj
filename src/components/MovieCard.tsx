@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import "../css/MovieCard.css";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../fireBase";
+import { auth } from "../firebase"; // Adjust the import path as necessary
 
 interface Movie {
   id: number;
   title: string;
-  release_date: string;
-  poster_path: string | null;
+  release_date?: string;
+  poster_path?: string | null;
 }
 
 interface MovieCardProps {
@@ -20,6 +20,15 @@ interface MovieCardProps {
 const MovieCard = ({ movie }: MovieCardProps) => {
   const { isFavorite, addToFavorites, removeFromFavorites } = useMovieContext();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Listen to authentication state changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAuthenticated(!!user);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   // Guard clause: don't render if movie is missing or incomplete
   if (
@@ -32,15 +41,6 @@ const MovieCard = ({ movie }: MovieCardProps) => {
   }
 
   const favorite = isFavorite(movie.id);
-
-  // Listen to authentication state changes
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setIsAuthenticated(!!user);
-    });
-
-    return () => unsubscribe();
-  }, []);
 
   const onFavoriteClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

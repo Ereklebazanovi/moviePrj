@@ -3,8 +3,7 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import Login from "../Login";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../fireBase";
-import GenreFilter from "../pages/GenreFilter";
+import { auth } from "../firebase";
 const Navbar = () => {
   const navigate = useNavigate();
   const [showLoginOptions, setShowLoginOptions] = useState(false);

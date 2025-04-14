@@ -39,7 +39,9 @@ const SearchResults = () => {
           </h2>
           <p className="text-lg text-white/70">
             Showing results for:{" "}
-            <span className="text-white font-semibold italic">"{searchQuery}"</span>
+            <span className="text-white font-semibold italic">
+              "{searchQuery}"
+            </span>
           </p>
         </div>
 
@@ -47,7 +49,9 @@ const SearchResults = () => {
         {loading && (
           <div className="flex flex-col items-center justify-center py-20">
             <FiSearch className="w-12 h-12 text-purple-400 animate-pulse mb-4" />
-            <p className="text-lg text-purple-300">Searching for cinematic treasures...</p>
+            <p className="text-lg text-purple-300">
+              Searching for cinematic treasures...
+            </p>
           </div>
         )}
 

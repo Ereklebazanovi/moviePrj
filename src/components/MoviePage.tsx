@@ -15,7 +15,7 @@ const MoviePage = () => {
     id: number
     title: string
     overview: string
-    release_date: string
+    release_date?: string
     runtime: number
     vote_average: number
     genres: { id: number; name: string }[]
